@@ -1,0 +1,27 @@
+[package]
+name = "stm32f303k8"
+version = "0.1.0"
+authors = ["tteio <kazuhiko_sumi@zeptoelecdesign.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cortex-m = "0.7.2"
+cortex-m-rt = { version = "0.6.13", features = ["device"] }
+# Panic behaviour, see https://crates.io/keywords/panic-impl for alternatives
+panic-halt = "0.2.0"
+# Replace stm32f303x8 with your target chip, see next section for more info
+stm32f3xx-hal = { version = "0.7.0", features = ["ld", "rt", "stm32f303x8"] }
+
+
+# this lets you use `cargo fix`!
+[[bin]]
+name = "stm32f303k8"
+test = false
+bench = false
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations
