@@ -1,2 +1,3 @@
 # stm32f303k8
-quick start stm32f303
+
+Embedded Rust stm32f303 quick start crates.  
