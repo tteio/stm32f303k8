@@ -1,6 +1,6 @@
 [package]
 name = "stm32f303k8"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["tteio <kazuhiko_sumi@zeptoelecdesign.com>"]
 edition = "2018"
 
@@ -13,7 +13,6 @@ cortex-m-rt = { version = "0.6.13", features = ["device"] }
 panic-halt = "0.2.0"
 # Replace stm32f303x8 with your target chip, see next section for more info
 stm32f3xx-hal = { version = "0.7.0", features = ["ld", "rt", "stm32f303x8"] }
-
 
 # this lets you use `cargo fix`!
 [[bin]]
