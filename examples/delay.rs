@@ -32,8 +32,10 @@ fn main() -> ! {
         .into_push_pull_output(&mut gpiob.moder, &mut gpiob.otyper);
 
     //delay setting
+    //let mut core = cortex_m::Peripherals::take().unwrap();
     let core = peripheral::Peripherals::take().unwrap();
-    let mut blocking = delay::Delay::new(core.SYST, clk);
+    let systick = core.SYST;
+    let mut blocking = delay::Delay::new(systick, clk);
 
     loop {
         led.toggle().unwrap();
