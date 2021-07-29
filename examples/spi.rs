@@ -63,17 +63,19 @@ fn main() -> ! {
     spi.write(&init_data).unwrap();
     ss.set_high().unwrap();
 
-
+    let mut write_data = [0x40, 0x14, 0x00, 0x00];
     loop {
         asm::delay(2_000_000);
         let mut read_data = [0x41, 0x12, 0x00, 0x00];
         ss.set_low().unwrap();
-        let read_buf = spi.transfer(&mut read_data).unwrap();
+        spi.transfer(&mut read_data).unwrap();
         ss.set_high().unwrap();
     
-        let mut write_data = [0x40, 0x14, 0x00, 0x00];
-        if read_buf[2] & 0x01 == 0x01 {
+        if read_data[2] & 0x01 == 0x01 {
             write_data[2] = 0x02;
+        }
+        else{
+            write_data[2] = 0x00;
         }
         ss.set_low().unwrap();
         spi.write(&write_data).unwrap();
